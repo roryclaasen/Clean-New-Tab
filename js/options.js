@@ -2,8 +2,7 @@ var defaultState = "hide";
 
 function loadOptions() {
   chrome.storage.local.get('tabsRecent', function (result) {
-    tabs = result.tabsRecent;
-    var tabs = localStorage["tabsRecent"];
+    var  tabs = result.tabsRecent;
 
     if (tabs == undefined || (tabs != "hide" && tabs != "show")) {
       tabs = defaultState;
