@@ -6,7 +6,8 @@ String.prototype.endsWith = function(suffix) {
   return this.match(suffix+"$") == suffix;
 };
 
-//new tab = https://www.google.co.uk/_/chrome/newtab
+
+var newTab = "https://www.google.co.uk/_/chrome/newtab";
 var url = window.location.href;
 if(url.startsWith("https://www.google.co.uk/_/")){
   url = url.replace("https://www.google.co.uk/_/","");
