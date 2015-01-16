@@ -3,9 +3,9 @@
 
   "name": "Clean Chrome (new tab)",
   "description": "This extension removes features in the new tab page to, well make it clean",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "author": "Rory Claasen",
-
+  "update_url": "http://gogo98901.co.nf/extensions/clean-tab.xml",
   "content_scripts": [
     {
       "matches": ["http://*/*", "https://*/*"],
