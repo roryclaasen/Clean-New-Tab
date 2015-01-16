@@ -3,18 +3,22 @@
 
   "name": "Clean Chrome (new tab)",
   "description": "This extension removes features in the new tab page to, well make it clean",
-  "version": "1.0",
+  "version": "0.0.7",
   "author": "Rory Claasen",
-  "options_page": "html/options.html",
 
   "content_scripts": [
     {
       "matches": ["http://*/*", "https://*/*"],
-      "js": ["js/thirdParty/jquery-2.1.3.js", "js/content.js"],
+      "js": ["js/thirdParty/jquery-2.1.3.js", "js/util.js", "js/content.js"],
       "run_at": "document_end",
       "all_frames": false
     }
   ],
+
+  "background" : {
+    "scripts" : ["js/background.js"],
+    "persistent": false
+  },
 
   "page_action": {
     "default_title": "Clean Chrome",
@@ -22,7 +26,7 @@
       "19": "img/icon.png",
       "38": "img/icon.png"
     },
-    "default_popup": "html/options.html"
+    "default_popup": "options.html"
   },
 
   "permissions": [

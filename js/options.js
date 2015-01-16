@@ -6,28 +6,20 @@ function loadOptions() {
     if (tabs == undefined || (tabs != "hide" && tabs != "show")) {
       tabs = defaultState;
     }
-    var select = document.getElementById("tabs");
-    for (var i = 0; i < select.children.length; i++) {
-      var child = select.children[i];
-      if (child.value == tabs) {
-        child.selected = "true";
-        break;
-      }
+    var tabsCheck = document.getElementById("tabs");
+    if (tabs == defaultState) {
+      tabsCheck.checked = true;
     }
     console.log("Loaded Options tabs as :" + tabs);
   });
   chrome.storage.local.get('themeLogo', function (result) {
-    var  theme = result.tabsRecent;
+    var  theme = result.themeLogo;
     if (theme == undefined || (theme != "hide" && theme != "show")) {
       theme = defaultState;
     }
-    var select = document.getElementById("theme");
-    for (var i = 0; i < select.children.length; i++) {
-      var child = select.children[i];
-      if (child.value == theme) {
-        child.selected = "true";
-        break;
-      }
+    var themeCheck = document.getElementById("theme");
+    if (theme == defaultState) {
+      themeCheck.checked = true;
     }
     console.log("Loaded Theme logo as :" + theme);
   });
@@ -36,33 +28,32 @@ function loadOptions() {
     if (gplus == undefined || (gplus != "hide" && gplus != "show")) {
       gplus = defaultState;
     }
-    var select = document.getElementById("gplus");
-    for (var i = 0; i < select.children.length; i++) {
-      var child = select.children[i];
-      if (child.value == gplus) {
-        child.selected = "true";
-        break;
-      }
+    var gplusCheck = document.getElementById("gplus");
+    if (gplus == defaultState) {
+      gplusCheck.checked = true;
     }
     console.log("Loaded Google+ bar as :" + gplus);
   });
 }
 
 function saveOptions() {
-  var tabs = document.getElementById("tabs");
-  var tabsOption = tabs.children[tabs.selectedIndex].value;
-  chrome.storage.local.set({'tabsRecent': tabsOption});
-  console.log("Saved Options tabs as :" + tabsOption);
-
-  var theme = document.getElementById("theme");
-  var themeOption = theme.children[theme.selectedIndex].value;
-  chrome.storage.local.set({'themeLogo': themeOption});
-  console.log("Saved Theme logo as :" + themeOption);
-
-  var gplus = document.getElementById("gplus");
-  var gplusOption = gplus.children[gplus.selectedIndex].value;
-  chrome.storage.local.set({'gplusBar': gplusOption});
-  console.log("Saved Googe Plus Bar as :" + gplusOption);
+  $("#refresh").removeClass("hidden");
+  var tabs = document.getElementById("tabs").checked;
+  var tabsOption = defaultState;
+  if (!tabs) {
+    tabsOption = "show";
+  }
+  var theme = document.getElementById("theme").checked;
+  var themeOption = defaultState;
+  if (!theme) {
+    themeOption = "show";
+  }
+  var gplus = document.getElementById("gplus").checked;
+  var gplusOption = defaultState;
+  if (!gplus) {
+    gplusOption = "show";
+  }
+  save(tabsOption, themeOption, gplusOption);
 }
 
 function init() {
